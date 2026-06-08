@@ -653,11 +653,12 @@
         "name": "MediaWarp",
         "description": "EmbyServer/Jellyfin 中间件：优化播放 Strm 文件、自定义前端样式、自定义允许访问客户端、嵌入脚本。",
         "labels": "云盘",
-        "version": "1.1.0",
+        "version": "1.1.1",
         "icon": "https://raw.githubusercontent.com/jxxghp/MoviePilot-Plugins/refs/heads/main/icons/cloud.png",
         "author": "DDSRem",
         "level": 1,
         "history": {
+            "v1.1.1": "同步更新配置字段（全变为小写 schema）以兼容 MediaWarp v0.2.4 新版配置规范，解决端口及 Emby 地址配置不生效的问题",
             "v1.1.0": "修复端口参数在 YAML 中被识别为字符串导致 unmarshal error 无法启动的问题",
             "v1.0.9": "修复新版 MediaWarp 找不到配置文件导致的启动失败问题",
             "v1.0.8": "同步更新 MediaWarp 主程序至 v0.2.4，切换下载源至原作者 AkimioJR/MediaWarp",

@@ -32,7 +32,7 @@ class MediaWarp(_PluginBase):
     # 插件图标
     plugin_icon = "https://raw.githubusercontent.com/jxxghp/MoviePilot-Plugins/refs/heads/main/icons/cloud.png"
     # 插件版本
-    plugin_version = "1.1.0"
+    plugin_version = "1.1.1"
     # 插件作者
     plugin_author = "DDSRem"
     # 作者主页
@@ -611,27 +611,36 @@ class MediaWarp(_PluginBase):
             port = 9000
 
         changes = {
-            "Port": port,
-            "Logger.AccessLogger.File": True,
-            "Logger.AccessLogger.Console": False,
-            "MediaServer.Type": "Jellyfin"
+            "port": port,
+            "log.access.file": True,
+            "log.access.console": False,
+            "server.type": "Jellyfin"
             if self._emby_server == "jellyfin"
             else "Emby",
-            "MediaServer.ADDR": self._emby_host,
-            "MediaServer.AUTH": self._emby_apikey,
-            "Web.Index": bool(
+            "server.addr": self._emby_host,
+            "server.auth": self._emby_apikey,
+            "web.enable": bool(
+                self._crx
+                or self._actor_plus
+                or self._fanart_show
+                or self._external_player_url
+                or self._danmaku
+                or self._video_together
+            ),
+            "web.index": bool(
                 Path(self.__config_path / "static" / "index.html").exists()
             ),
-            "Web.Crx": bool(self._crx),
-            "Web.ActorPlus": bool(self._actor_plus),
-            "Web.FanartShow": bool(self._fanart_show),
-            "Web.Danmaku": bool(self._danmaku),
-            "Web.ExternalPlayerUrl": bool(self._external_player_url),
-            "Web.VideoTogether": bool(self._video_together),
-            "HTTPStrm.Enable": True,
-            "HTTPStrm.FinalURL": True,
-            "HTTPStrm.PrefixList": self._media_strm_path.split("\n"),
-            "Subtitle.SRT2ASS": bool(self._srt2ass),
+            "web.crx": bool(self._crx),
+            "web.actor_plus": bool(self._actor_plus),
+            "web.fanart_show": bool(self._fanart_show),
+            "web.external_player_url": bool(self._external_player_url),
+            "web.danmaku": bool(self._danmaku),
+            "web.video_together": bool(self._video_together),
+            "http_strm.enable": True,
+            "http_strm.final_url": True,
+            "http_strm.prefix_list": self._media_strm_path.split("\n"),
+            "subtitle.enable": bool(self._srt2ass),
+            "subtitle.srt2ass": bool(self._srt2ass),
         }
         self.__modify_config(Path(self.__config_path / self.__config_filename), changes)
 

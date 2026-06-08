@@ -32,7 +32,7 @@ class MediaWarp(_PluginBase):
     # 插件图标
     plugin_icon = "https://raw.githubusercontent.com/jxxghp/MoviePilot-Plugins/refs/heads/main/icons/cloud.png"
     # 插件版本
-    plugin_version = "1.0.8"
+    plugin_version = "1.0.9"
     # 插件作者
     plugin_author = "DDSRem"
     # 作者主页
@@ -633,7 +633,10 @@ class MediaWarp(_PluginBase):
         Path(self.__config_path).mkdir(parents=True, exist_ok=True)
         Path(self.__logs_dir).mkdir(parents=True, exist_ok=True)
 
-        self.process = psutil.Popen([self.__mediawarp_path])
+        self.process = psutil.Popen(
+            [self.__mediawarp_path],
+            cwd=Path(self.__mediawarp_path).parent
+        )
 
         if self.process.is_running():
             logger.info("MediaWarp 服务成功启动！")

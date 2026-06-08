@@ -32,7 +32,7 @@ class MediaWarp(_PluginBase):
     # 插件图标
     plugin_icon = "https://raw.githubusercontent.com/jxxghp/MoviePilot-Plugins/refs/heads/main/icons/cloud.png"
     # 插件版本
-    plugin_version = "1.0.7"
+    plugin_version = "1.0.8"
     # 插件作者
     plugin_author = "DDSRem"
     # 作者主页
@@ -80,7 +80,7 @@ class MediaWarp(_PluginBase):
         # 配置文件名
         self.__config_filename = "config.yaml"
         # 二级制文件版本
-        self.__mediawarp_version = "0.1.12"
+        self.__mediawarp_version = "0.2.4"
         self.__mediawarp_version_path = (
             settings.PLUGIN_DATA_PATH / class_name / "version.txt"
         )
@@ -682,7 +682,7 @@ class MediaWarp(_PluginBase):
         获取下载链接
         """
         base_url = (
-            "https://github.com/DDSRem-Dev/MediaWarp/releases/"
+            "https://github.com/AkimioJR/MediaWarp/releases/"
             "download/v{version}/MediaWarp_{version}_{os}_{arch}.tar.gz"
         )
 

@@ -32,7 +32,7 @@ class MediaWarp(_PluginBase):
     # 插件图标
     plugin_icon = "https://raw.githubusercontent.com/jxxghp/MoviePilot-Plugins/refs/heads/main/icons/cloud.png"
     # 插件版本
-    plugin_version = "1.0.9"
+    plugin_version = "1.1.0"
     # 插件作者
     plugin_author = "DDSRem"
     # 作者主页
@@ -605,8 +605,13 @@ class MediaWarp(_PluginBase):
             self.__update_config()
             return
 
+        try:
+            port = int(self._port) if self._port else 9000
+        except ValueError:
+            port = 9000
+
         changes = {
-            "Port": self._port,
+            "Port": port,
             "Logger.AccessLogger.File": True,
             "Logger.AccessLogger.Console": False,
             "MediaServer.Type": "Jellyfin"
